@@ -13,7 +13,9 @@ import com.mygdx.game.widgets.Button;
 public class MenuState extends GameState {
 
     private Texture backgroundImage;
-    private Dimension size;
+    private Texture titleImage;
+    private Dimension backgroundSize;
+    private Dimension titleSize;
     private MenuInputProcessor inputProcessor;
     private Button startButton;
     private Button customizeButton;
@@ -22,10 +24,13 @@ public class MenuState extends GameState {
     public MenuState(){
         handler = Handler.getInstance();
         backgroundImage = new Texture("Menu/fire-background.jpg");
-        size = new Dimension(0, 1300, 512, 100);
+        titleImage = new Texture ("Menu/Title.png");
+        titleSize = new Dimension(100, 1000, 600, 200);
+        titleSize.centerX(handler.screenWidth);
+        backgroundSize = new Dimension(0, 0, 800, 1600);
         inputProcessor = new MenuInputProcessor();
         //Start Button Initialization
-        Dimension startGameDim = new Dimension(200, 800, 200, 100);
+        Dimension startGameDim = new Dimension(200, 500, 400, 200);
         startGameDim.centerX(handler.screenWidth);
         Texture startGameImg = new Texture("Menu/start-button.png");
         this.startButton = new Button(startGameDim, startGameImg){
@@ -39,7 +44,8 @@ public class MenuState extends GameState {
     }
 
     public void render(SpriteBatch batch){
-        Utils.drawImg(batch, backgroundImage, size);
+        Utils.drawImg(batch, backgroundImage, backgroundSize);
+        Utils.drawImg(batch, titleImage, titleSize);
         startButton.render(batch);
     }
 
