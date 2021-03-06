@@ -3,12 +3,14 @@ package com.mygdx.game.utils;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.states.GameState;
 import com.mygdx.game.states.menu.MenuState;
+import com.mygdx.game.states.test.TestState;
 
 public class Handler {
 
     private static Handler handler = null;
     public GameState activeState;
     public MenuState menuState;
+    public TestState testState;
     public OrthographicCamera camera;
     public float screenWidth;
     public float screenHeight;
@@ -21,7 +23,6 @@ public class Handler {
         if (handler == null) {
             handler = new Handler();
         }
-
         return handler;
     }
 
