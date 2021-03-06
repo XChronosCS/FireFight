@@ -1,11 +1,27 @@
 package com.mygdx.game.states.menu;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.utils.Handler;
+import com.mygdx.game.utils.Utils;
+import com.mygdx.game.widgets.Button;
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
 
 public class MenuInputProcessor implements InputProcessor {
 
     private Handler handler;
+    private ArrayList<Button> buttonArrayList;
+
+    public MenuInputProcessor(){
+        buttonArrayList = new ArrayList<>();
+        handler = Handler.getInstance();
+    }
+
+    public void addButton(Button button) {buttonArrayList.add(button);}
+
     @Override
     public boolean keyDown(int keycode) {
         return false;
@@ -23,6 +39,15 @@ public class MenuInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Vector3 mathVector = Utils.getCameraPosFromMousePos(handler.camera, screenX, screenY);
+        float translatedX = mathVector.x;
+        float translatedY = mathVector.y;
+        for(int i = 0; i < buttonArrayList.size(); i++){
+            Button curButton = buttonArrayList.get(i);
+            if(curButton.wasClicked(translatedX, translatedY)){
+                curButton.onClick(translatedX, translatedY);
+            }
+        }
         return false;
     }
 
