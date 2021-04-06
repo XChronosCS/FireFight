@@ -6,13 +6,20 @@ import com.mygdx.game.utils.Handler;
 import com.mygdx.game.utils.Utils;
 import com.mygdx.game.widgets.Button;
 
+import java.util.ArrayList;
+
 public class TestInputProcessor implements InputProcessor {
     private Handler handler;
     private Fireguy blaze;
+    private ArrayList<Button> buttonArrayList;
+
 
     public TestInputProcessor(){
+        buttonArrayList = new ArrayList<>();
         handler = Handler.getInstance();
     }
+
+    public void addButton(Button button) {buttonArrayList.add(button);}
 
     public void setBlaze(Fireguy hot) {
         blaze = hot;
@@ -38,8 +45,11 @@ public class TestInputProcessor implements InputProcessor {
         Vector3 mathVector = Utils.getCameraPosFromMousePos(handler.camera, screenX, screenY);
         float translatedX = mathVector.x;
         float translatedY = mathVector.y;
-        if(blaze.getXCenter() != translatedX && blaze.getYCenter() != translatedY){
-            blaze.moveCharacter(translatedX, translatedY);
+        for(int i = 0; i < buttonArrayList.size(); i++){
+            Button curButton = buttonArrayList.get(i);
+            if(curButton.wasClicked(translatedX, translatedY)){
+                curButton.onClick(translatedX, translatedY);
+            }
         }
         return false;
     }

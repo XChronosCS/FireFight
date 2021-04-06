@@ -40,6 +40,9 @@ public class MenuState extends GameState {
             }
         };
         inputProcessor.addButton(this.startButton);
+    }
+
+    public void setActiveInputProcessor(){
         Gdx.input.setInputProcessor(inputProcessor);
     }
 

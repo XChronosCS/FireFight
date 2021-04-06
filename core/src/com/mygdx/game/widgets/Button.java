@@ -7,6 +7,7 @@ import com.mygdx.game.Dimension;
 public abstract class Button implements Clickable{
 
     private Dimension dimButton;
+
     private Texture imgButton;
 
     public Button(Dimension dimVal, Texture imgVal){

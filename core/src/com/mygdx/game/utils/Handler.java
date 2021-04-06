@@ -1,5 +1,6 @@
 package com.mygdx.game.utils;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.states.GameState;
 import com.mygdx.game.states.menu.MenuState;
@@ -20,14 +21,15 @@ public class Handler {
     }
 
     public static Handler getInstance() {
-        if (handler == null) {
-            handler = new Handler();
+        if (Handler.handler == null) {
+            Handler.handler = new Handler();
         }
-        return handler;
+        return Handler.handler;
     }
 
     public void setActiveState(GameState gs){
         this.activeState = gs;
+        this.activeState.setActiveInputProcessor();
     }
 
 }

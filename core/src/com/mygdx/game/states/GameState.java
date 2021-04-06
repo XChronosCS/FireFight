@@ -12,6 +12,10 @@ public class GameState {
 
     }
 
+    public void setActiveInputProcessor(){
+
+    }
+
     public void tick(){
 
     }
